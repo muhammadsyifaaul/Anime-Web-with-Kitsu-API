@@ -1,0 +1,88 @@
+
+body {
+    background:url('bg.png');
+    font-family: 'Poppins';
+    width: 100%;
+    min-height: 100vh; 
+    background-size: cover;
+    background-attachment: fixed;
+    
+}
+
+nav {
+    margin: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+nav h1 {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 2rem;
+}
+
+.input {
+    background-color: rgb(40, 27, 99);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 300px;
+    color: aqua;
+}
+.input::placeholder {
+    color: aqua;
+}
+.input:focus {
+    border-color: aqua;
+    outline: none;
+    box-shadow: 0 0 10px rgba(57, 224, 236, 0.8),
+    0 0 14px rgba(57, 224, 236, 0.8),
+    0 0 18px rgba(57, 224, 236, 0.8);
+}
+.container {
+    width: 1000px;
+    min-height: 90vh;
+    border-radius: 5px;
+    margin: 2rem auto;
+    gap: 100px;
+    background: linear-gradient(rgba(39, 39, 39, 0.7), rgba(48, 47, 47, 0.7)) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cards {
+    display: flex;
+    justify-content: flex-start;
+    padding: 2rem;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    max-width: 800px;
+}
+.card {
+    min-height: 250px;
+    width: 100px;
+    margin: 0;
+    padding: 1rem;
+}
+.card a {
+    color: #fff;
+    text-decoration: none;
+}
+.card img {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card a{
+    width: 100%;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.title {
+    width: 100px;
+}

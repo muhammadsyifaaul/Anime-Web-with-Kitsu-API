@@ -1,0 +1,36 @@
+body {
+    font-family: 'Poppins';
+
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.6);
+    width: 900px;
+    margin: 4rem auto;
+    padding: auto;
+    min-height: 90vh;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 200px 400px;
+    gap: 5rem;
+}
+
+.anime-description {
+    color: #fff;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.data-anime {
+    font-size: 0.9rem;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+}
