@@ -72,4 +72,11 @@ body {
         align-items: center;
         padding: auto;
     }
+    .data-anime {
+        max-width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: hidden;
+    }
+    
 }
