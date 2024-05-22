@@ -19,7 +19,7 @@ function getAnimeData(id) {
            let animeData = res.data;
            const desc = animeData.attributes.synopsis;
            const type = animeData.attributes.showType;
-           const eps = animeData.attributes.episodeLength;
+           const eps = animeData.attributes.episodeCount;
            const rating = animeData.attributes.ageRatingGuide;
            const status = animeData.attributes.status;
            const genres = animeData.relationships.genres.links.related;
