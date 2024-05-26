@@ -64,13 +64,14 @@ body {
         padding: auto;
     }
     .image {
+        margin-top: 1rem;
         max-width: 40%;
     }
     .description {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: auto;
+        padding: 1rem;
     }
     .data-anime {
         max-width: 90%;

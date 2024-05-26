@@ -1,55 +1,71 @@
 const api = 'https://kitsu.io/api/edge/anime?filter[text]='
 const cards = document.querySelector('.cards')
+
 let card = ''
 fetch(api)
-.then(res => res.json())
-.then(dataAnime => {
-    let animeData = dataAnime.data 
-    animeData.forEach(anime => {
-        card += `<div class="card" data-id="${anime.id}>
-        <a href="detail.html?id=${anime.id}"><img src="${anime.attributes.posterImage.tiny}" alt=""></a>
-        <a href="detail.html?id=${anime.id}">${anime.attributes.slug}</a>
-    </div>`
+    .then(res => {
+        if (!res.ok) {
+            throw new Error('API URL is incorrect or the server is down.');
+        }
+        return res.json()
     })
-    cards.innerHTML = card
-})
+    .then(dataAnime => {
+        let animeData = dataAnime.data
+        if (animeData.length === 0) {
+            throw new Error('No anime found.');
+        }
+        animeData.forEach(anime => {
+            card += `<div class="card" data-id="${anime.id}">
+            <a href="detail.html?id=${anime.id}"><img src="${anime.attributes.posterImage.tiny}" alt=""></a>
+            <a href="detail.html?id=${anime.id}">${anime.attributes.slug}</a>
+        </div>`
+        })
+        cards.innerHTML = card
+    })
+    .catch(error => {
+        cards.innerHTML = `<p>Error: ${error.message}</p>`;
+    });
+
 const inputField = document.querySelector('.input')
-inputField.addEventListener('keydown', function(e) {
-    if(e.key == 'Enter') {
-        const keyword = inputField.value
-        document.body.style.backgroundAttachment= 'fixed';
-        getAnime(keyword)
-        
+inputField.addEventListener('keydown', async function(e) {
+    if (e.key === 'Enter') {
+        try {
+            const keyword = inputField.value
+            document.body.style.backgroundAttachment = 'fixed';
+            await getAnime(keyword)
+        } catch (err) {
+            console.error(err)
+        }
     }
 })
 
-function getAnime(keyword) {
+async function getAnime(keyword) {
     card = ''
-    fetch(api+keyword)
-        .then(response => response.json()
-        .then(animeData => {
-            
-            let data = animeData.data;
-            data.forEach(a => {
-                let title = a.attributes.slug;
-                let poster = a.attributes.posterImage.tiny;
-                showCard(a.id,title,poster)
-            })
-            
+    try {
+        const response = await fetch(api + keyword)
+        if (!response.ok) {
+            throw new Error('Failed to fetch anime data.');
+        }
+        const data = await response.json()
+        if (data.data.length === 0) {
+            throw new Error('No anime found for the given keyword.');
+        }
+        const animeData = data.data
+        animeData.forEach(a => {
+            let id = a.id
+            let title = a.attributes.slug
+            let poster = a.attributes.posterImage.tiny
+            showCard(id, title, poster)
         })
-        .catch(e => alert('ada masalah'))
-        
-    )
+    } catch (error) {
+        cards.innerHTML = `<p>Error: ${error.message}</p>`;
+    }
 }
 
-function showCard(...data) {
-    const [id,title, poster] = data
-    card += `<div class="card" data-id="${id}>
+function showCard(id, title, poster) {
+    card += `<div class="card" data-id="${id}">
         <a href="detail.html?id=${id}"><img src="${poster}" alt=""></a>
         <a href="detail.html?id=${id}"><p>${title}</p></a>
     </div>`
     cards.innerHTML = card
-    
 }
-
-
