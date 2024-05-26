@@ -14,7 +14,12 @@ function getId() {
 
 function getAnimeData(id) {
     fetch('https://kitsu.io/api/edge/anime/' + id)
-       .then(res => res.json())
+       .then(res => {
+        if(!res.ok) {
+            throw new Error('Failed to fetch anime data')
+        }
+        return res.json()
+       })
        .then(res => {
            let animeData = res.data;
            const desc = animeData.attributes.synopsis;
@@ -38,7 +43,13 @@ function getAnimeData(id) {
            changeImg(bg, poster);
        })
        .catch(e => {
-           console.error(e)
+        
+           showDes(e.message)
+           const body = document.body
+        body.style.background = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${'bg.png'})`;
+        body.style.backgroundRepeat = 'no-repeat'
+        body.style.backgroundSize = 'cover' 
+        body.style.backgroundAttachment = 'fixed'
        });
 }
 

@@ -58,7 +58,10 @@ async function getAnime(keyword) {
             showCard(id, title, poster)
         })
     } catch (error) {
-        cards.innerHTML = `<p>Error: ${error.message}</p>`;
+        const container = document.querySelector('.container')
+        container.innerHTML = ` 
+        <img src="notfound.png" alt="" width="80%">
+        <h3>${error.message}</h3>`;
     }
 }
 
