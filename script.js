@@ -61,7 +61,7 @@ async function getAnime(keyword) {
         const container = document.querySelector('.container')
         container.innerHTML = ` 
         <img src="notfound.png" alt="" width="80%">
-        <h3>${error.message}</h3>`;
+        `;
     }
 }
 
